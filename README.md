@@ -1,14 +1,14 @@
 # WordPress Security Coding Standards
 > A trimmed down ruleset focusing on security coding standards for WordPress.
 
-Adhering to code standards is a very good thing, and the [WordPress Coding Standards](wpcs) are a very important tool in developing any WordPress project whether a plugin, theme, or core contribution. But sometimes the plethora of primarily code style sniffs can really get in the way of using PHPCS on a legacy project and it can be difficult to identify the most important items that should be addressed.
+Adhering to code standards is a very good thing, and the [WordPress Coding Standards][wpcs] are a very important tool in developing any WordPress project whether a plugin, theme, or core contribution. But sometimes the plethora of primarily code style sniffs can really get in the way of using PHPCS on a legacy project and it can be difficult to identify the most important items that should be addressed.
 
 This was born out of a need to quickly evaluate third party plugins for security concerns, while ignoring code style standards. But this ruleset is also a good start for sniffing critical issues in any legacy plugin that hasn't been adhering to the WPCS.
 
 ## Prerequisites
 
-1.  PHPCS
-2.  WordPress Coding Standards
+1.  [PHPCS][phpcs]
+2.  [WordPress Coding Standards][wpcs]
 
 ## Installation
 
@@ -46,3 +46,4 @@ The work here is definitely not comprehensive, so outside contributions are more
 
 
 [wpcs]: https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards
+[phpcs]: https://github.com/squizlabs/PHP_CodeSniffer
