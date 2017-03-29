@@ -5,6 +5,16 @@ Adhering to code standards is a very good thing, and the [WordPress Coding Stand
 
 This was born out of a need to quickly evaluate third party plugins for security concerns, while ignoring code style standards. But this ruleset is also a good start for sniffing critical issues in any legacy plugin that hasn't been adhering to the WPCS.
 
+## The Base Rules
+
+The code sniffs I've included and the severity elevation I've done on some of them (from warning to error) are focused on a more enterprise-security minded environment. These are the base rules I used to decide what sniffs to include and what not to.
+
+1.  **File system reads and writes are disallowed.** This is important in multi-server installations where accessing the filesystem (outside of `wp-content/uploads`) is considered highly un-reliable and un-safe.
+2.  **No PHP runtime changes.** In production environments, it's generally unwise to change runtime configuration on the fly, so don't do it.
+3.  **Minimize dead or debug code.** This is mostly a code style, but can also be a major security check. If vast portions of code are commented out, that could be a security hole and it warrants further investigation.
+4.  **Some things don't work in a cached environment.** When running a WordPress site behind a caching layer, it's important to know what information is safe to use and set and what is not. Cookies and session data can get cached if you're not careful and expose sensitive data to other users. So it's best not to mess with those.
+5.  **Validate and Sanitize All The Things.** Should be self-explanatory.
+
 ## Prerequisites
 
 1.  [PHPCS][phpcs]
