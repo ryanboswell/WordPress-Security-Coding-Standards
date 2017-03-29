@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress Security">
+	<description>A custom set of rules to check against known security concerns for a WordPress install</description>
+
+	<!-- https://vip.wordpress.com/documentation/code-review-what-we-look-for/#validation-sanitization-and-escaping -->
+	<!-- https://vip.wordpress.com/documentation/best-practices/security/validating-sanitizing-escaping/ -->
+	<rule ref="WordPress.XSS.EscapeOutput"/>
+	<rule ref="WordPress.CSRF.NonceVerification" />
+	<rule ref="WordPress.VIP.ValidatedSanitizedInput" />
+
+	<!-- https://vip.wordpress.com/documentation/vip/code-review-what-we-look-for/#session_start-and-other-session-related-functions -->
+	<rule ref="WordPress.VIP.SessionFunctionsUsage" />
+	<rule ref="WordPress.VIP.SessionVariableUsage" />
+
+	<!-- https://vip.wordpress.com/documentation/best-practices/database-queries/ -->
+	<rule ref="WordPress.DB" />
+	<rule ref="WordPress.WP.PreparedSQL" />
+
+	<!-- https://vip.wordpress.com/documentation/vip/code-review-what-we-look-for/#eval-and-create_function -->
+	<rule ref="Squiz.PHP.Eval"/>
+	<rule ref="Squiz.PHP.Eval.Discouraged">
+		<type>error</type>
+		<message>eval() is a security risk so not allowed.</message>
+	</rule>
+
+	<!-- https://vip.wordpress.com/documentation/vip/code-review-what-we-look-for/#eval-and-create_function -->
+	<!-- https://vip.wordpress.com/documentation/vip/code-review-what-we-look-for/#serializing-data -->
+	<!-- https://vip.wordpress.com/documentation/vip/code-review-what-we-look-for/#encoding-values-used-when-creating-a-url-or-passed-to-add_query_arg -->
+	<!-- https://github.com/Automattic/vip-scanner/blob/master/vip-scanner/checks/ForbiddenPHPFunctionsCheck.php -->
+	<rule ref="WordPress.PHP.DiscouragedPHPFunctions">
+		<!-- https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/pull/633#issuecomment-266634811 -->
+		<properties>
+			<property name="exclude" value="obfuscation" />
+		</properties>
+	</rule>
+	<!-- https://vip.wordpress.com/documentation/vip/code-review-what-we-look-for/#settings-alteration -->
+	<rule ref="WordPress.PHP.DiscouragedPHPFunctions.runtime_configuration">
+		<type>error</type>
+	</rule>
+
+	<!-- https://vip.wordpress.com/documentation/code-review-what-we-look-for/#commented-out-code-debug-code-or-output -->
+	<rule ref="WordPress.PHP.DevelopmentFunctions" />
+	<rule ref="WordPress.PHP.DevelopmentFunctions.error_log">
+		<type>error</type>
+	</rule>
+	<!-- https://vip.wordpress.com/documentation/vip/code-review-what-we-look-for/#settings-alteration -->
+	<rule ref="WordPress.PHP.DevelopmentFunctions.prevent_path_disclosure">
+		<type>error</type>
+	</rule>
+
+	<!-- https://vip.wordpress.com/documentation/vip/code-review-what-we-look-for/#use-wp_parse_url-instead-of-parse_url -->
+	<!-- https://vip.wordpress.com/documentation/vip/code-review-what-we-look-for/#use-wp_json_encode-over-json_encode -->
+	<!-- https://vip.wordpress.com/documentation/vip/code-review-what-we-look-for/#filesystem-writes -->
+	<!-- https://vip.wordpress.com/documentation/vip/code-review-what-we-look-for/#remote-calls -->
+	<rule ref="WordPress.Functions" />
+	<rule ref="WordPress.WP.AlternativeFunctions">
+		<exclude name="WordPress.WP.AlternativeFunctions.parse_url"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.json_encode"/>
+	</rule>
+	<rule ref="WordPress.WP.AlternativeFunctions.file_system_read">
+		<type>error</type>
+		<message>Interacting directly with the file system is not allowed.</message>
+	</rule>
+	<rule ref="WordPress.VIP.FileSystemWritesDisallow" />
+
+</ruleset>

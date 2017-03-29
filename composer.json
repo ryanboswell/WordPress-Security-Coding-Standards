@@ -1,0 +1,19 @@
+{
+	"name"       : "ryanboswell/wpscs",
+	"description": "A trimmed down PHPCS ruleset focusing on security coding standards for WordPress.",
+	"keywords"   : ["phpcs", "standards", "WordPress", "security"],
+	"license"    : "MIT",
+	"authors"    : [
+		{
+			"name"    : "Ryan Boswell",
+			"homepage": "https://github.com/ryanboswell"
+
+		}
+	],
+	"require"    : {
+		"wp-coding-standards/wpcs": "^0.11.0"
+	},
+	"support"    : {
+		"issues": "https://github.com/ryanboswell/WordPress-Security-Coding-Standards/issues"
+	}
+}
